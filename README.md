@@ -171,7 +171,7 @@ Docker Compose 설치
 Docker Compose를 설정하려면 아래 명령을 실행합니다.
 
 ```
-$ sudo apt-get install python-pip
+$ sudo apt-get install python3-pip
 $ pip --version
 $ sudo pip install docker-compose
 ```
