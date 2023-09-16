@@ -183,3 +183,24 @@ $ docker-compose version
 ```
 
 Hyperledger Fabric를 설치하고 설정하기 위해 필요한 모든 전제 조건이 설정되었습니다.
+
+## Hyperledger Fabric 설치
+
+**단계 1:** Fabric을 다운로드하고 설정하기 위해 아래 명령어를 실행하세요.
+```
+$ curl -sSL https://bit.ly/2ysbOFE | bash -s
+```
+
+위 명령어를 실행할 때 다음과 같은 문제가 발생할 수 있습니다.
+
+```
+failed to get default registry endpoint from daemon (Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:
+```
+
+이 문제를 해결하려면 다음 명령어를 실행하세요.
+
+```
+$ sudo chmod 666 /var/run/docker.sock
+```
+
+이 명령어를 실행한 후, 단계 3에서 언급한 명령어를 다시 실행하면 시스템에 다운로드 및 설정할 수 있습니다.
