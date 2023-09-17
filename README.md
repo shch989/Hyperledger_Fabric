@@ -204,3 +204,7 @@ $ sudo chmod 666 /var/run/docker.sock
 ```
 
 이 명령어를 실행한 후, 단계 3에서 언급한 명령어를 다시 실행하면 시스템에 다운로드 및 설정할 수 있습니다.
+
+## Fabric-Samples 폴더에 Chaincode 폴더가 없을 경우
+
+mac환경이 아닐 경우 생성이 안될 경우가 있다 따라서 https://github.com/hyperledger/fabric-samples/tree/v2.1.1 해당 링크에서 샘플 파일을 다운 받아서 적용시싶시오.
