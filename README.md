@@ -1,6 +1,6 @@
 # Hyperledger Fabric Prerequisites Setup
 
-Hyperledger Fabric를 설치하기 전에 필요한 전제 조건을 설정하는 방법을 안내합니다.
+Hyperledger Fabric를 설치하기 전에 필요한 전제 조건을 설정하는 방법을 안내합니다. (Ubuntu-20.04 환경)
 
 ## Curl 설치
 
