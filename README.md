@@ -92,12 +92,12 @@ Go 언어 설정
 
 ```
 cd Downloads
-sudo tar -xvf go1.13.4.linux-amd64.tar.gz
+sudo tar -xvf go1.21.1.linux-amd64.tar.gz
 ```
 
 **Step 4:** 이제 Downloads 폴더 아래에 "go" 폴더가 새로 생성된 것을 볼 수 있어야 합니다. 확인하려면 "ls" 명령을 실행합니다.
 
-**Step 5:** 다음 단계는 "go" 폴더를 Downloads 폴더에서 /usr/local 폴더로 이동하는 것입니다. 아래 명령을 사용하여 이동합니다.
+**Step 5:** 다음 단계는 "go" 폴더를 Downloads 폴더에서 $HOME/go 폴더로 이동하는 것입니다. 아래 명령을 사용하여 이동합니다.
 ```
 $ sudo mv go /usr/local
 ```
@@ -108,7 +108,7 @@ $ sudo mv go /usr/local
 첫 번째 방법을 선택하려면 다음 단계를 따릅니다.
 
 ```
-$ export GOROOT=/usr/local/go
+$ export GOROOT=$HOME/go
 $ cd $HOME
 $ mkdir goProject
 $ export GOPATH=$HOME/goProject
@@ -122,7 +122,7 @@ $ export PATH=$PATH:$GOPATH/bin
 .profile 파일을 열고 아래 항목을 추가합니다.
 
 ```
-GOROOT=/usr/local/go
+GOROOT=$HOME/go
 GOPATH=$HOME/goProject
 ```
 
@@ -207,13 +207,47 @@ $ sudo chmod 666 /var/run/docker.sock
 
 ## Fabric-Samples 폴더에 Chaincode 폴더가 없을 경우
 
-mac환경이 아닐 경우 생성이 안될 경우가 있다 따라서 https://github.com/hyperledger/fabric-samples/tree/v2.1.1 해당 링크에서 샘플 파일을 다운 받아서 적용시싶시오.
+ https://hyperledger-fabric.readthedocs.io/en/latest/install.html 해당 링크의 지시대로 Fabric-Samples을 불러온다
 
 ## Docker 사용
 ```
 $ cd fabric-samples
 $ cd chaincode-docker-devmode
 $ docker-compose -f docker-compose-simple.yaml up
+```
+
+## Fabric-Samples Docker 이미지 및 바이너리 다운로드
+
+### 작업 디렉터리 생성 (임의의 폴더 생성 가능)
+```
+$ mkdir -p $HOME/goProject/github.com/<your_github_userid>
+$ cd $HOME/goProject/github.com/<your_github_userid>
+```
+
+### 설치 스크립트 
+```
+$ $ curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh && chmod +x install-fabric.sh
+```
+
+### -h 옵션을 보기
+```
+$ ./install-fabric.sh -h
+Usage: ./install-fabric.sh [-f|--fabric-version <arg>] [-c|--ca-version <arg>] <comp-1> [<comp-2>] ... [<comp-n>] ...
+        <comp>: Component to install one or more of  d[ocker]|b[inary]|s[amples]. If none specified, all will be installed
+        -f, --fabric-version: FabricVersion (default: '2.5.4')
+        -c, --ca-version: Fabric CA Version (default: '1.5.7')
+```
+
+### Docker 컨테이너를 가져오고 샘플 저장소를 복제
+```
+$ ./install-fabric.sh docker samples binary
+or
+$ ./install-fabric.sh d s b
+```
+
+### 버전 선택 (선택사항)
+```
+$ ./install-fabric.sh --fabric-version 2.5.0 binary
 ```
 
 ## Test-Network 실행
