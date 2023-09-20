@@ -208,3 +208,20 @@ $ sudo chmod 666 /var/run/docker.sock
 ## Fabric-Samples 폴더에 Chaincode 폴더가 없을 경우
 
 mac환경이 아닐 경우 생성이 안될 경우가 있다 따라서 https://github.com/hyperledger/fabric-samples/tree/v2.1.1 해당 링크에서 샘플 파일을 다운 받아서 적용시싶시오.
+
+## Docker 사용
+```
+$ cd fabric-samples
+$ cd chaincode-docker-devmode
+$ docker-compose -f docker-compose-simple.yaml up
+```
+
+## Test-Network 실행
+```
+$ ./network.sh up
+```
+
+## Channel 생성
+```
+$ ./network.sh createChannel -c <channelName>
+```
