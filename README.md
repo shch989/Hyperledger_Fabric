@@ -250,12 +250,151 @@ $ ./install-fabric.sh d s b
 $ ./install-fabric.sh --fabric-version 2.5.0 binary
 ```
 
-## Test-Network 실행
+# Start & Stop test-network
+
+### 단계 1: 아래 명령을 사용하여 fabric-samples 폴더로 이동합니다.
 ```
-$ ./network.sh up
+$ cd fabric-samples
 ```
 
-## Channel 생성
+### 단계 2: 아래 명령을 사용하여 test-network 폴더로 이동합니다.
 ```
-$ ./network.sh createChannel -c <channelName>
+$ cd test-network
 ```
+
+### 단계 3: 아래 명령을 실행하여 테스트 네트워크를 시작합니다.
+```
+$ sudo ./network.sh up
+```
+
+이렇게 하면 네트워크가 시작되며, 다음 명령을 실행하여 도커 컨테이너를 확인할 수 있습니다.
+
+```
+$ sudo docker ps
+```
+
+이 명령은 다음과 같은 세 가지 도커 컨테이너를 표시합니다.
+
+- Org1 피어 노드 하나
+- Org2 피어 노드 하나
+- Orderer 하나
+
+네트워크를 시작하면 기본적으로 어떤 채널도 생성되지 않습니다. 다음 명령을 사용하여 현재 채널 상태를 확인할 수 있습니다.
+
+```
+$ docker exec peer0.org1.example.com peer channel list
+```
+
+이 명령은 채널이 아직 생성되지 않았음을 보여줍니다.
+
+### 단계 4: 아래 명령을 사용하여 새로운 채널을 생성합니다.
+```
+$ sudo ./network.sh createChannel -c testchannel
+```
+
+이렇게 하면 testchannel이라는 이름의 새로운 채널이 생성됩니다.
+
+이 채널 생성을 확인하려면 두 개의 피어에서 다음 명령을 실행하세요.
+
+```
+$ sudo docker exec peer0.org1.example.com peer channel list
+$ sudo docker exec peer0.org2.example.com peer channel list
+```
+
+### 단계 5: 네트워크를 중지하려면 다음 명령을 실행하세요.
+```
+$ sudo ./network.sh down
+```
+
+# Start & Stop test-network with CouchDB
+
+### 단계 1: 아래 명령을 사용하여 fabric-samples 폴더로 이동합니다.
+```
+$ cd fabric-samples
+```
+
+### 단계 2: 아래 명령을 사용하여 test-network 폴더로 이동합니다.
+```
+$ cd test-network
+```
+
+### 단계 3:  아래 명령을 실행하여 네트워크를 시작하고 CouchDB 컨테이너를 생성합니다.
+```
+$ sudo ./network.sh up -s couchdb
+```
+
+이 명령은 네트워크를 시작하고 각 피어에 대해 CouchDB 컨테이너를 생성합니다.
+
+### 단계 4: 아래 명령을 사용하여 새로운 채널을 생성합니다.
+```
+$ sudo ./network.sh createChannel -c testchannel1
+```
+
+이 명령은 testchannel1이라는 이름의 새로운 채널을 생성합니다.
+
+### 단계 5: 네트워크를 중지하려면 다음 명령을 실행하세요.
+```
+$ sudo ./network.sh down
+```
+
+# Start & Stop test-network with CA
+
+### 단계 1: 아래 명령을 사용하여 fabric-samples 폴더로 이동합니다.
+```
+$ cd fabric-samples
+```
+
+### 단계 2: 아래 명령을 사용하여 test-network 폴더로 이동합니다.
+```
+$ cd test-network
+```
+
+### 단계 3: 아래 명령을 실행하여 테스트 네트워크를 시작하고 각 조직마다 CA 컨테이너를 생성합니다 (orderer, org1 피어, org2 피어 각각에 대한 하나).
+```
+$ sudo ./network.sh up -ca
+```
+
+이 명령은 네트워크를 시작하고 각 조직에 대한 CA 컨테이너를 생성합니다.
+
+### 단계 4: 아래 명령을 사용하여 새로운 채널을 생성합니다.
+
+```
+$ sudo ./network.sh createChannel -c testchannel2
+```
+
+이 명령은 testchannel2라는 이름의 새로운 채널을 생성합니다.
+
+### 단계 5: 네트워크를 중지하려면 다음 명령을 실행하세요.
+```
+$ sudo ./network.sh down
+```
+
+#  Start & Stop test-network with all containers
+
+### 단계 1: 아래 명령을 사용하여 fabric-samples 폴더로 이동합니다.
+```
+$ cd fabric-samples
+```
+
+### 단계 2: 아래 명령을 사용하여 test-network 폴더로 이동합니다.
+```
+$ cd test-network
+```
+
+### 단계 3: 아래 명령을 실행하여 모든 컨테이너 (2개의 피어, 오더러, 3개의 CA, 2개의 CouchDB)를 가진 테스트 네트워크를 시작합니다.
+```
+$ sudo ./network.sh up -ca -s couchdb
+```
+
+이 명령은 모든 컨테이너를 포함하여 테스트 네트워크를 시작합니다.
+
+### 단계 4: 아래 명령을 사용하여 testchannel3라는 이름의 새로운 채널을 생성합니다.
+```
+$ sudo ./network.sh createChannel -c testchannel3
+```
+
+### 단계 5: 네트워크를 중지하려면 다음 명령을 실행하세요.
+```
+$ sudo ./network.sh down
+```
+
