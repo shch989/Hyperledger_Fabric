@@ -189,6 +189,7 @@ Hyperledger Fabric를 설치하고 설정하기 위해 필요한 모든 전제 �
 **단계 1:** Fabric을 다운로드하고 설정하기 위해 아래 명령어를 실행하세요.
 ```
 $ curl -sSL https://bit.ly/2ysbOFE | bash -s
+$ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.1
 ```
 
 위 명령어를 실행할 때 다음과 같은 문제가 발생할 수 있습니다.
