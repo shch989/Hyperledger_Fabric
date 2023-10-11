@@ -69,12 +69,14 @@ Python3 설치
 터미널 창에서 아래 명령을 실행하여 Python을 설치합니다.
 
 ```
+$ sudo apt-get install python
 $ sudo apt-get install python3
 ```
 
 Python 설치를 확인하려면 아래 명령을 실행합니다. 이 명령은 Python의 버전을 반환해야 합니다.
 
 ```
+$ python --version
 $ python3 --version
 ```
 
@@ -189,7 +191,7 @@ Hyperledger Fabric를 설치하고 설정하기 위해 필요한 모든 전제 �
 **단계 1:** Fabric을 다운로드하고 설정하기 위해 아래 명령어를 실행하세요.
 ```
 $ curl -sSL https://bit.ly/2ysbOFE | bash -s
-$ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.1
+$ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.0
 ```
 
 위 명령어를 실행할 때 다음과 같은 문제가 발생할 수 있습니다.
@@ -210,7 +212,7 @@ $ sudo chmod 666 /var/run/docker.sock
 
  https://hyperledger-fabric.readthedocs.io/en/latest/install.html 해당 링크의 지시대로 Fabric-Samples을 불러온다
 
-## Docker 사용
+## Docker 개발 네트워크 사용
 ```
 $ cd fabric-samples
 $ cd chaincode-docker-devmode
