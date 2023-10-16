@@ -192,6 +192,7 @@ Hyperledger Fabric를 설치하고 설정하기 위해 필요한 모든 전제 �
 ```
 $ curl -sSL https://bit.ly/2ysbOFE | bash -s
 $ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.0.0
+$ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.10 1.5.2
 ```
 
 위 명령어를 실행할 때 다음과 같은 문제가 발생할 수 있습니다.
@@ -292,7 +293,7 @@ $ docker exec peer0.org1.example.com peer channel list
 
 ### 단계 4: 아래 명령을 사용하여 새로운 채널을 생성합니다.
 ```
-$ sudo ./network.sh createChannel -c testchannel
+$ sudo ./network.sh createChannel -c <testchannel>
 ```
 
 이렇게 하면 testchannel이라는 이름의 새로운 채널이 생성됩니다.
